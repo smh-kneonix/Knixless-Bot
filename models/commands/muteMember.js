@@ -21,7 +21,7 @@ const data = new SlashCommandBuilder()
     .addStringOption((option) =>
         option
             .setName("reason")
-            .setDescription("The reason for banning")
+            .setDescription("The reason for mute")
             .setAutocomplete(true)
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers)

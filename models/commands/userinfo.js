@@ -42,7 +42,6 @@ module.exports = {
             .setTimestamp();
 
         await interaction.reply({
-            // ephemeral: true,
             embeds: [embedContext],
         });
     },

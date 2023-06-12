@@ -6,7 +6,7 @@ const {
     Events,
     PermissionsBitField,
     PermissionFlagsBits,
-    Client
+    Client,
 } = require("discord.js");
 
 module.exports = {
@@ -39,7 +39,7 @@ module.exports = {
                 roleOptions.push({
                     label: role.name,
                     description: role.name + " role",
-                    value: role.id
+                    value: role.id,
                 });
             }
         });
@@ -59,13 +59,14 @@ module.exports = {
             .setDescription("You can choose a role for yourself");
 
         await interaction.reply({
+            ephemeral: true,
             embeds: [embed],
-            components: [actionRow]
+            components: [actionRow],
         });
 
         const collector = interaction.channel.createMessageComponentCollector({
             filter: (client) => client.customId,
-            time: 20000
+            time: 20000,
         });
         // when you click on components before end of time do this
         collector.on("collect", async (interaction) => {
@@ -76,7 +77,7 @@ module.exports = {
             });
             // update your component
             await interaction.reply({
-                content: "successfully added"
+                content: "successfully added",
             });
         });
 
@@ -84,5 +85,5 @@ module.exports = {
         collector.on("end", (collected) =>
             console.log(`Collected ${collected.size} items`)
         );
-    }
+    },
 };
