@@ -3,10 +3,7 @@ const {
     StringSelectMenuBuilder,
     SlashCommandBuilder,
     EmbedBuilder,
-    Events,
-    PermissionsBitField,
-    PermissionFlagsBits,
-    Client,
+    PermissionsBitField
 } = require("discord.js");
 
 module.exports = {
@@ -39,7 +36,7 @@ module.exports = {
                 roleOptions.push({
                     label: role.name,
                     description: role.name + " role",
-                    value: role.id,
+                    value: role.id
                 });
             }
         });
@@ -61,12 +58,12 @@ module.exports = {
         await interaction.reply({
             ephemeral: true,
             embeds: [embed],
-            components: [actionRow],
+            components: [actionRow]
         });
 
         const collector = interaction.channel.createMessageComponentCollector({
             filter: (client) => client.customId,
-            time: 20000,
+            time: 20000
         });
         // when you click on components before end of time do this
         collector.on("collect", async (interaction) => {
@@ -77,7 +74,13 @@ module.exports = {
             });
             // update your component
             await interaction.reply({
-                content: "successfully added",
+                ephemeral: true,
+                embeds: [
+                    new EmbedBuilder()
+                        .setColor(0x00ff00)
+                        .setTitle("successful")
+                        .setDescription("roles successfully added")
+                ]
             });
         });
 
@@ -85,5 +88,5 @@ module.exports = {
         collector.on("end", (collected) =>
             console.log(`Collected ${collected.size} items`)
         );
-    },
+    }
 };

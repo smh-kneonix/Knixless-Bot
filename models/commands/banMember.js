@@ -1,4 +1,8 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const {
+    SlashCommandBuilder,
+    PermissionFlagsBits,
+    EmbedBuilder
+} = require("discord.js");
 
 const data = new SlashCommandBuilder()
     .setName("ban")
@@ -19,6 +23,7 @@ const data = new SlashCommandBuilder()
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
     .setDMPermission(false);
+
 // Ban user and give feed back
 async function execute(interaction) {
     let errText;
@@ -27,19 +32,32 @@ async function execute(interaction) {
     const member = interaction.options.getMember("target");
 
     if (!member) {
-        return interaction.reply(`we can't Ban this user`);
+        return interaction.reply({
+            embeds: [
+                new EmbedBuilder()
+                    .setColor(0x555555)
+                    .setTitle("404")
+                    .setDescription(`user not found! 404 :(`)
+            ]
+        });
     } else {
         member
             .ban({ reason })
+            .then(() => {
+                const result = `user ${member} get ban.\n reason: ${reason}`;
+                const embed = new EmbedBuilder()
+                    .setColor(0xff0000)
+                    .setTitle("ban")
+                    .setDescription(result);
+                interaction.reply({ embeds: [embed] });
+            })
             .catch((err) => {
                 errText = `we have some problem here : ${err.message}`;
-                console.log("our err:" + err.message);
-            })
-            .finally(() => {
-                const result = errText
-                    ? errText
-                    : `user ${member} get ban for ${reason} reason`;
-                interaction.reply(result);
+                const embed = new EmbedBuilder()
+                    .setColor(0x888888)
+                    .setTitle("failed!")
+                    .setDescription(errText);
+                interaction.reply({ embeds: [embed] });
             });
     }
 }

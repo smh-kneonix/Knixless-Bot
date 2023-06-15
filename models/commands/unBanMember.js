@@ -1,7 +1,7 @@
 const {
     SlashCommandBuilder,
     PermissionFlagsBits,
-    Client,
+    EmbedBuilder
 } = require("discord.js");
 
 const data = new SlashCommandBuilder()
@@ -24,19 +24,34 @@ async function execute(interaction) {
     const target = users.find(function (user) {
         return user.user.username === member;
     });
-    
-    if (!member) {
-        return interaction.reply(`we can't unBan this user`);
+
+    if (!member || !target) {
+        return interaction.reply({
+            embeds: [
+                new EmbedBuilder()
+                    .setColor(0x555555)
+                    .setTitle("404")
+                    .setDescription(`user not found! 404 :(`)
+            ]
+        });
     } else {
         interaction.guild.members
             .unban(target.user.id)
+            .then(() => {
+                const result = `user ${member} get unban`;
+                const embed = new EmbedBuilder()
+                    .setColor(0x00ff00)
+                    .setTitle("successful")
+                    .setDescription(result);
+                interaction.reply({ embeds: [embed] });
+            })
             .catch((err) => {
                 errText = `we have some problem here : ${err.message}`;
-                console.log("our err:" + err.message);
-            })
-            .finally(() => {
-                const result = errText ? errText : `user ${member} get unban`;
-                interaction.reply(result);
+                const embed = new EmbedBuilder()
+                    .setColor(0x888888)
+                    .setTitle("failed!")
+                    .setDescription(errText);
+                interaction.reply({ embeds: [embed] });
             });
     }
 }

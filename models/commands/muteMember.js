@@ -1,4 +1,8 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const {
+    SlashCommandBuilder,
+    PermissionFlagsBits,
+    EmbedBuilder
+} = require("discord.js");
 
 const data = new SlashCommandBuilder()
     .setName("mute")
@@ -35,15 +39,21 @@ async function execute(interaction) {
     const member = interaction.options.getMember("target");
     member
         .timeout(1000 * 60 * time, reason)
+        .then(() => {
+            const result = `user ${member} get timeout\nfor ${time}min\nreason: ${reason}`;
+            const embed = new EmbedBuilder()
+                .setColor(0xff3444)
+                .setTitle("timeout")
+                .setDescription(result);
+            interaction.reply({ embeds: [embed] });
+        })
         .catch((err) => {
             errText = `we have some problem here : ${err.message}`;
-            console.log("our err:" + err.message);
-        })
-        .finally(() => {
-            const result = errText
-                ? errText
-                : `user ${member} get timeout for ${time}min for ${reason} reason`;
-            interaction.reply(result);
+            const embed = new EmbedBuilder()
+                .setColor(0x888888)
+                .setTitle("failed!")
+                .setDescription(errText);
+            interaction.reply({ embeds: [embed] });
         });
 }
 module.exports = { data, execute };
