@@ -1,18 +1,27 @@
 
+<h1 align="center">kinxless bot</h1> 
 
-# Knixless bot
+<br>
 
-<div align="center">
-  <img src="https://cdn.discordapp.com/avatars/1114936505501229097/d38b8c2f433a4eda9bb65d6df6a89804.png?size=240">
+    
+  <img align="right" src="https://cdn.discordapp.com/avatars/1114936505501229097/d38b8c2f433a4eda9bb65d6df6a89804.png?size=240">
 
-  ![Discord Shield](https://discordapp.com/api/guilds/902808477745958993/widget.png?style=shield)
-</div>
+ 
+
+
+  ### join server
+  [<img src="https://dcbadge.vercel.app/api/server/WJbr2xHuZe?style=flat-square&theme=discord-inverted">](!https://discord.gg/WJbr2xHuZe)
+  
+
+  
 
 
 ## description
 
 This is a simple Discord bot that helps moderate your server by automating some of the moderation tasks. The bot is designed to help you keep your server clean, organized, and safe for everyone.
 Also, we have some updates for future coming soon...
+
+<br>
 
 ## Features
 
@@ -22,6 +31,8 @@ Also, we have some updates for future coming soon...
 -   Timeout: Temporarily restrict users' ability to interact with the server.
 -   User Info: Retrieve detailed information about a user like profile picture
 -   Role Picker: Allow users to assign themselves ordinary roles based on their preferences.
+
+<br>
 
 ## Installation
 
@@ -37,6 +48,8 @@ git clone https://github.com/smh-kneonix/Knixless-Bot.git
 npm install
 ```
 
+<br>
+
 ## Configuration
 
 1. create a `.env` file in the directory
@@ -47,6 +60,8 @@ npm install
     - `APP_ID`: your discord application id
 
     - `GUILD_ID`: your server id
+
+<br>
 
 ## Usage
 
@@ -68,6 +83,8 @@ npm run server
 
 -   `/selectrole `: after inter the command you can pick multiple roles simultaneously.
 -   ...
+
+<br>
 
 ## Contributing
 
