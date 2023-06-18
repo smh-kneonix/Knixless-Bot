@@ -10,7 +10,10 @@
 
 
   ### join server
-  [<img src="https://dcbadge.vercel.app/api/server/WJbr2xHuZe?style=flat-square&theme=discord-inverted">](!https://discord.gg/WJbr2xHuZe)
+
+  [![Our Server](https://dcbadge.vercel.app/api/server/WJbr2xHuZe)](https://discord.gg/WJbr2xHuZe?style=flat-square&theme=discord-inverted)
+  
+
   
 
   
